@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درآمد یار - فارماکوپه دارویی</title>
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="fonts/vazirmatn.css">
+    <link rel="stylesheet" href="style/pharmacopoeia.css">
+</head>
+<body>
+
+    <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    <div class="overlay" id="mobileOverlay" onclick="closeMenu()"></div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="brand-logo"><i class="fa-solid fa-chart-line"></i>درآمد یار</div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span>خانه</span></a>
+            <a href="magazine.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>مجله درآمد</span></a>
+            <a href="academy.html" class="nav-item"><i class="fa-solid fa-graduation-cap"></i><span>آکادمی</span></a>
+            <a href="rules.html" class="nav-item"><i class="fa-solid fa-scale-balanced"></i><span>قوانین</span></a>
+            <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-gauge-high"></i><span>داشبورد</span></a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-avatar">A</div>
+            <div><div style="font-weight: bold; font-size: 13px;">کاربر ارشد</div><div style="color: #64748b; font-size: 13px;">user@ihee.ir</div></div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i></a>
+            <h1 class="page-title">فارماکوپه دارویی</h1>
+        </div>
+
+        <div class="search-section">
+            <div class="search-row">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-microphone mic-icon"></i>
+                    <input type="text" id="searchInput" placeholder="نام فارسی دارو یا کد ژنریک را وارد کنید...">
+                </div>
+            </div>
+
+            <div class="filters-row">
+                <label class="radio-label">
+                    <input type="radio" name="source" value="ttac" checked>
+                    <span>تیتک (TTAC)</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="source" value="tamin">
+                    <span>تامین اجتماعی</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="source" value="salamat">
+                    <span>بیمه سلامت</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="source" value="armed">
+                    <span>نیروهای مسلح</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="results-container" id="resultsContainer">
+            <div style="text-align:center; padding:40px; color:#64748b; grid-column:1/-1;">
+                <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i><br><br>
+                در حال دریافت اطلاعات...
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- UI Logic ---
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        function toggleMenu() { sidebar.classList.toggle('active'); mobileOverlay.classList.toggle('active'); }
+        function closeMenu() { sidebar.classList.remove('active'); mobileOverlay.classList.remove('active'); }
+
+        // --- CSV Logic (Simulated) ---
+        const sampleData = [
+            { name: "استامینوفن ۳۲۵ میلی‌گرم", code: "00562", price: "15,000", source: "تیتک", date: "1403/10/01" },
+            { name: "آموکسی‌سیلین ۵۰۰", code: "00891", price: "45,000", source: "تیتک", date: "1403/10/05" },
+            { name: "دیفن هیدرامین کامپاند", code: "01234", price: "120,000", source: "تیتک", date: "1403/09/28" },
+            { name: "سفیکسیم ۴۰۰", code: "02564", price: "85,000", source: "بیمه سلامت", date: "1403/10/02" },
+            { name: "متفورمین ۵۰۰", code: "03321", price: "22,000", source: "تامین اجتماعی", date: "1403/09/30" },
+        ];
+
+        let allData = sampleData;
+
+        function renderData() {
+            const container = document.getElementById('resultsContainer');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            const filtered = allData.filter(item => {
+                return item.name.includes(searchVal) || item.code.includes(searchVal);
+            });
+
+            container.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:40px; color:#64748b; grid-column:1/-1;">موردی یافت نشد.</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'pharma-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${item.name}</div>
+                        <span class="code-tag">${item.code}</span>
+                    </div>
+                    <div class="card-details">
+                        <div style="display:flex; align-items:center; gap:5px;">
+                            <span class="source-tag">${item.source}</span>
+                            <span style="opacity:0.7">${item.date}</span>
+                        </div>
+                        <span class="price-val">${item.price} ریال</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', renderData);
+        
+        // Initial Render
+        renderData();
+
+    </script>
+</body>
+</html>

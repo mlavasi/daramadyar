@@ -1,0 +1,84 @@
+:root { 
+    --primary-bg: #f3f4f6; 
+    --sidebar-bg: #ffffff; 
+    --text-main: #1e293b; 
+    --text-light: #64748b; 
+    --accent-teal: #0ea5e9;
+    --accent-indigo: #6366f1; 
+    --accent-rose: #e11d48; /* رنگ جدید برای تعرفه */
+    --border-color: #e2e8f0; 
+    --transition-speed: 0.3s;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', 'Segoe UI', sans-serif; text-decoration: none; outline: none; -webkit-tap-highlight-color: transparent; }
+
+body { background-color: var(--primary-bg); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
+
+/* --- Mobile Menu & Sidebar (Same as before) --- */
+.mobile-menu-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1001; background: white; border: none; width: 45px; height: 45px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--accent-indigo); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
+.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px); z-index: 1002; }
+.overlay.active { display: block; }
+
+/* --- Sidebar --- */
+        .sidebar { width: 260px; background-color: var(--sidebar-bg); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 20px; z-index: 1000; transition: transform var(--transition-speed); flex-shrink: 0; height: 100vh; }
+        .sidebar.active { transform: translateX(0); }
+        .brand-logo { font-size: 22px; font-weight: 800; color: var(--accent-teal); display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9; }
+        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex: 1; overflow-y: auto; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: var(--text-light); font-weight: 500; font-size: 14px; transition: 0.2s; white-space: nowrap; }
+        .nav-item:hover { background-color: #f1f5f9; color: var(--accent-teal); transform: translateX(-5px); }
+        .nav-item i { width: 20px; text-align: center; font-size: 18px; }
+        .sidebar-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 20px; display: flex; align-items: center; gap: 10px; }
+        .user-avatar { width: 40px; height: 40px; background: #e0f2fe; color: #0284c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+
+
+/* --- Main Content --- */
+.main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; scroll-behavior: smooth; }
+
+.page-header { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+.back-btn { width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; color: var(--text-main); box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s; cursor: pointer; flex-shrink: 0; }
+.back-btn:hover { background-color: var(--accent-indigo); color: white; transform: translateX(3px); }
+.page-title { font-size: 24px; font-weight: 800; color: var(--text-main); }
+
+/* --- Filters --- */
+.filter-wrapper { background: white; padding: 15px; border-radius: 16px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+
+.search-box { position: relative; width: 100%; }
+.search-box input { width: 100%; padding: 12px 40px 12px 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 14px; transition: 0.3s; }
+.search-box input:focus { border-color: var(--accent-indigo); }
+.search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+
+.type-filters { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; -ms-overflow-style: none; scrollbar-width: none; }
+.type-filters::-webkit-scrollbar { display: none; }
+
+.filter-chip { padding: 8px 16px; background: #f1f5f9; border-radius: 10px; color: var(--text-light); font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; border: 2px solid transparent; min-width: 80px; text-align: center; }
+.filter-chip:hover { background: #e2e8f0; }
+.filter-chip.active { background: var(--accent-indigo); color: white; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3); }
+
+/* --- LOINC Grid --- */
+.loinc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+
+.loinc-card { background: white; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid var(--border-color); overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
+.loinc-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--accent-indigo); }
+
+.card-header { padding: 15px 20px; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; background: #fdfdfd; }
+.card-title { font-weight: 700; color: var(--text-main); font-size: 15px; line-height: 1.6; }
+.loinc-badge { font-weight: 800; color: var(--accent-indigo); font-size: 13px; background: #e0e7ff; padding: 4px 10px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; direction: ltr; }
+
+.card-body { padding: 20px; display: flex; flex-direction: column; gap: 15px; flex: 1; }
+.en-name { font-size: 13px; color: #64748b; font-family: 'Segoe UI', sans-serif; line-height: 1.5; background: #f8fafc; padding: 10px; border-radius: 8px; direction: ltr; text-align: left; }
+
+.info-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; border-top: 1px dashed #e2e8f0; padding-top: 15px; }
+.info-item { display: flex; flex-direction: column; gap: 4px; }
+.info-label { font-size: 11px; color: #94a3b8; font-weight: 600; }
+.info-value { font-size: 14px; font-weight: 700; color: var(--text-main); font-family: 'Segoe UI', sans-serif; }
+.price-value { color: var(--accent-rose); font-size: 16px; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    body { display: block; overflow: auto; }
+    .mobile-menu-btn { display: flex; }
+    .sidebar { position: fixed; top: 0; right: 0; height: 100vh; width: 280px; transform: translateX(100%); box-shadow: -5px 0 20px rgba(0,0,0,0.1); z-index: 1003; }
+    .sidebar.active { transform: translateX(0); }
+    .main-content { padding: 80px 20px 20px 20px; height: auto; overflow: visible; }
+    .loinc-grid { grid-template-columns: 1fr; }
+}

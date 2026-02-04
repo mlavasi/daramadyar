@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+body {
+    background: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.result-wrapper {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.result-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.result-card .icon {
+    font-size: 64px;
+    margin-bottom: 15px;
+}
+
+.result-card h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.result-card p {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.result-card.success .icon { color: #16a34a; }
+.result-card.failed .icon  { color: #dc2626; }
+.result-card.error .icon   { color: #f59e0b; }
+
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 10px;
+    background: #e5e7eb;
+    color: #1e293b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn.primary {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}

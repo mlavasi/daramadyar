@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# اگر کاربر پوشه درخواست کرد، کاری نکن (مثلاً daramadyar.com/images)
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# اگر کاربر فایل با پسوند کامل درخواست کرد هم کاری نکن
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# اگر فایل php متناظر وجود داشت، آن را اجرا کن
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

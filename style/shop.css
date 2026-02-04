@@ -1,0 +1,156 @@
+:root {
+    --text-main: #1e293b;
+    --text-light: #64748b;
+    --accent-teal: #0ea5e9;
+    --accent-purple: #6366f1;
+}
+
+.shop-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.plan-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: var(--accent-teal);
+}
+
+/* آیکون بالای کارت */
+.plan-icon-box {
+    width: 80px;
+    height: 80px;
+    background: #f1f5f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.plan-card:hover .plan-icon-box {
+    background: var(--accent-teal);
+    color: white;
+}
+
+.plan-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.plan-price {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--accent-teal);
+    margin-bottom: 25px;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.plan-price small {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.features-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.features-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    color: var(--text-light);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.features-list li:last-child {
+    border-bottom: none;
+}
+
+.features-list li i {
+    color: #10b981; /* Green check */
+}
+
+.btn-select {
+    margin-top: auto;
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    background: #f1f5f9;
+    color: var(--text-main);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.plan-card:hover .btn-select {
+    background: var(--accent-teal);
+    color: white;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+/* استایل کارت ویژه (Special) */
+.plan-card.special {
+    border: 2px solid var(--accent-purple);
+    background: linear-gradient(to bottom, #fff, #f5f3ff);
+}
+
+.plan-card.special .plan-icon-box {
+    background: #e0e7ff;
+    color: var(--accent-purple);
+}
+
+.plan-card.special:hover .plan-icon-box {
+    background: var(--accent-purple);
+    color: white;
+}
+
+.plan-card.special .plan-price {
+    color: var(--accent-purple);
+}
+
+.plan-card.special:hover .btn-select {
+    background: var(--accent-purple);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.badge-offer {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #facc15;
+    color: #854d0e;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 10px;
+    border-radius: 8px;
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درآمد یار - تجهیزات پزشکی</title>
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="fonts/vazirmatn.css">
+
+    <link rel="stylesheet" href="style/equipments.css">
+
+    <style>
+        :root {
+            --primary-bg: #f3f4f6;
+            --sidebar-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --accent-teal: #0ea5e9;
+            --accent-red: #ef4444;
+            --accent-green: #10b981;
+            --border-color: #e2e8f0;
+            --transition-speed: 0.3s;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; text-decoration: none; outline: none; -webkit-tap-highlight-color: transparent; }
+
+        body { background-color: var(--primary-bg); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
+
+        /* --- Mobile Menu --- */
+        .mobile-menu-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1001; background: white; border: none; width: 45px; height: 45px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--accent-red); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px); z-index: 1002; }
+        .overlay.active { display: block; }
+
+        /* --- Sidebar --- */
+        .sidebar { width: 260px; background-color: var(--sidebar-bg); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 20px; z-index: 1000; transition: transform var(--transition-speed); flex-shrink: 0; height: 100vh; }
+        .sidebar.active { transform: translateX(0); }
+        .brand-logo { font-size: 22px; font-weight: 800; color: var(--accent-teal); display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9; }
+        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex: 1; overflow-y: auto; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: var(--text-light); font-weight: 500; font-size: 14px; transition: 0.2s; white-space: nowrap; }
+        .nav-item:hover { background-color: #f1f5f9; color: var(--accent-teal); transform: translateX(-5px); }
+        .nav-item i { width: 20px; text-align: center; font-size: 18px; }
+        .sidebar-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 20px; display: flex; align-items: center; gap: 10px; }
+        .user-avatar { width: 40px; height: 40px; background: #e0f2fe; color: #0284c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+
+        /* --- Main Content --- */
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; scroll-behavior: smooth; }
+
+        .page-header { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+        .back-btn { width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; color: var(--text-main); box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s; cursor: pointer; flex-shrink: 0; }
+        .back-btn:hover { background-color: var(--accent-red); color: white; transform: translateX(3px); }
+        .page-title { font-size: 24px; font-weight: 800; color: var(--text-main); }
+
+        /* --- Search Section --- */
+        .search-section {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-top: 4px solid var(--accent-red);
+        }
+
+        .search-row { display: flex; gap: 10px; align-items: center; }
+        
+        .input-wrapper { flex: 1; position: relative; display: flex; align-items: center; }
+        .input-wrapper input { width: 100%; padding: 12px 45px 12px 15px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 15px; transition: 0.3s; }
+        .input-wrapper input:focus { border-color: var(--accent-red); box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1); }
+        .mic-icon { position: absolute; right: 15px; color: var(--text-light); font-size: 18px; }
+
+        /* Filters */
+        .filters-row { display: flex; flex-wrap: wrap; gap: 15px; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
+        
+        .radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--text-light); transition: 0.2s; padding: 6px 12px; border-radius: 12px; background: #f8fafc; }
+        .radio-label:hover { background-color: #fee2e2; color: var(--accent-red); }
+        
+        .radio-label input[type="radio"] { appearance: none; width: 18px; height: 18px; border: 2px solid #cbd5e1; border-radius: 50%; display: grid; place-content: center; transition: 0.2s; }
+        .radio-label input[type="radio"]::before { content: ""; width: 8px; height: 8px; border-radius: 50%; transform: scale(0); transition: 0.2s; background-color: white; }
+        
+        .radio-label input[type="radio"]:checked { border-color: var(--accent-green); background-color: var(--accent-green); }
+        .radio-label input[type="radio"]:checked::before { transform: scale(1); }
+        .radio-label input[type="radio"]:checked + span { color: var(--text-main); font-weight: 700; }
+
+        /* --- Results Grid (Mobile Friendly Table) --- */
+        .results-container { display: grid; grid-template-columns: 1fr; gap: 15px; }
+
+        .equip-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: 0.2s;
+        }
+        .equip-card:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.08); border-color: var(--accent-red); }
+
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-title { font-weight: 700; color: var(--text-main); font-size: 15px; line-height: 1.5; }
+        .code-tag { background: #f1f5f9; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--text-light); white-space: nowrap; margin-left: 10px; }
+
+        .card-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px; color: var(--text-light); }
+        .detail-item { display: flex; flex-direction: column; gap: 2px; }
+        .detail-label { font-size: 11px; opacity: 0.8; }
+        .detail-value { font-weight: 600; color: var(--text-main); }
+
+        .card-price { margin-top: 5px; padding-top: 10px; border-top: 1px dashed #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+        .price-val { font-weight: 800; font-size: 16px; color: var(--accent-green); font-family: 'Segoe UI', sans-serif; }
+
+        /* --- Responsive --- */
+        @media (min-width: 769px) {
+            .results-container { grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            body { display: block; overflow: auto; }
+            .mobile-menu-btn { display: flex; }
+            .sidebar { position: fixed; top: 0; right: 0; height: 100vh; width: 280px; transform: translateX(100%); box-shadow: -5px 0 20px rgba(0,0,0,0.1); z-index: 1003; }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { padding: 80px 20px 20px 20px; height: auto; overflow: visible; }
+            .search-row { flex-direction: column; }
+            .input-wrapper { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    <div class="overlay" id="mobileOverlay" onclick="closeMenu()"></div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="brand-logo"><i class="fa-solid fa-chart-line"></i>درآمد یار</div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span>خانه</span></a>
+            <a href="magazine.html" class="nav-item"><i class="fa-solid fa-book-open"></i><span>مجله درآمد</span></a>
+            <a href="academy.html" class="nav-item"><i class="fa-solid fa-graduation-cap"></i><span>آکادمی</span></a>
+            <a href="rules.html" class="nav-item"><i class="fa-solid fa-scale-balanced"></i><span>قوانین</span></a>
+            <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-gauge-high"></i><span>داشبورد</span></a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-avatar">A</div>
+            <div><div style="font-weight: bold; font-size: 13px;">کاربر ارشد</div><div style="color: #64748b; font-size: 13px;">user@ihee.ir</div></div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i></a>
+            <h1 class="page-title">تجهیزات پزشکی</h1>
+        </div>
+
+        <div class="search-section">
+            <div class="search-row">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-microphone mic-icon"></i>
+                    <input type="text" id="searchInput" placeholder="جستجو در نام تجهیز، کد IRC یا برند...">
+                </div>
+            </div>
+
+            <div class="filters-row">
+                <label class="radio-label">
+                    <input type="radio" name="insurance" value="tamin" checked>
+                    <span>تامین اجتماعی</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="insurance" value="salamat">
+                    <span>بیمه سلامت</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="insurance" value="armed">
+                    <span>نیروهای مسلح</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="results-container" id="resultsContainer">
+            <div style="text-align:center; padding:40px; color:#64748b; grid-column:1/-1;">
+                <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i><br><br>
+                در حال دریافت اطلاعات...
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- UI Logic ---
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        function toggleMenu() { sidebar.classList.toggle('active'); mobileOverlay.classList.toggle('active'); }
+        function closeMenu() { sidebar.classList.remove('active'); mobileOverlay.classList.remove('active'); }
+
+        // --- CSV Logic ---
+        // داده‌های نمونه برای نمایش (چون فایل CSV هنوز آپلود نشده)
+        // اگر فایل CSV دارید، تابع loadCSV مشابه صفحات قبلی جایگزین می‌شود
+        const sampleData = [
+            { name: "استنت قلبی دارویی", code: "IRC: 123456789", brand: "Abbott / آمریکا", model: "Xience Sierra", price: "180,000,000" },
+            { name: "نخ بخیه نایلون", code: "Index: 98765", brand: "سوپا / ایران", model: "3/0 Reverse Cutting", price: "450,000" },
+            { name: "سوند فولی لاتکس", code: "IRC: 55443322", brand: "Well Lead / چین", model: "سایز 16", price: "120,000" },
+            { name: "مش جراحی فتق", code: "IRC: 11223344", brand: "Covidien / آمریکا", model: "10x15 cm", price: "8,500,000" },
+            { name: "لنز داخل چشمی", code: "Index: 667788", brand: "Alcon / آمریکا", model: "AcrySof IQ", price: "45,000,000" },
+        ];
+
+        let allData = sampleData;
+
+        function renderData() {
+            const container = document.getElementById('resultsContainer');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            const filtered = allData.filter(item => {
+                return item.name.includes(searchVal) || item.code.toLowerCase().includes(searchVal) || item.brand.includes(searchVal);
+            });
+
+            container.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:40px; color:#64748b; grid-column:1/-1;">موردی یافت نشد.</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'equip-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${item.name}</div>
+                        <span class="code-tag">${item.code}</span>
+                    </div>
+                    <div class="card-details">
+                        <div class="detail-item">
+                            <span class="detail-label">برند / کشور</span>
+                            <span class="detail-value">${item.brand}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">سایز / مدل</span>
+                            <span class="detail-value">${item.model}</span>
+                        </div>
+                    </div>
+                    <div class="card-price">
+                        <span style="font-size:12px;">قیمت مصوب:</span>
+                        <span class="price-val">${item.price} <span style="font-size:11px; font-weight:400; color:#64748b;">ریال</span></span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', renderData);
+        
+        // Initial Render
+        renderData();
+
+    </script>
+</body>
+</html>
