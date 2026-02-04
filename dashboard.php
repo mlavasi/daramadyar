@@ -58,8 +58,10 @@ elseif ($is_premium && $daysLeft == 0) {
     </style>
 </head>
 <body>
+
     <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
     <div class="overlay" id="mobileOverlay" onclick="closeMenu()"></div>
+
     <?php include __DIR__ . '/include/sidebar.php'; ?>
 
     <main class="main-content">
@@ -147,6 +149,13 @@ elseif ($is_premium && $daysLeft == 0) {
     </div>
 
     <script>
+
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        
+        function toggleMenu() { sidebar.classList.toggle('active'); mobileOverlay.classList.toggle('active'); }
+        function closeMenu() { sidebar.classList.remove('active'); mobileOverlay.classList.remove('active'); }
+
         // دیتای مربوط به هر مودال
         const modalData = {
             'webinar': {
