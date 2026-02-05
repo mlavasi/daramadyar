@@ -1,0 +1,181 @@
+:root {
+    --card-bg: #ffffff;
+    --input-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-main: #1e293b;
+    --text-light: #64748b;
+    --accent: #6366f1; /* همان بنفش داشبورد */
+    --success: #10b981;
+    --error: #ef4444;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* کارت خلاصه بالا */
+.profile-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+.info-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background: #e0e7ff;
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+}
+
+.user-details-top {
+    display: flex;
+    flex-direction: column;
+}
+
+.display-name { font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+.display-phone { font-size: 1rem; color: var(--text-light); font-family: 'Segoe UI', sans-serif; letter-spacing: 1px; }
+
+/* بخش فرم */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 15px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    background: var(--input-bg);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: 0.3s;
+    appearance: none; /* حذف استایل پیش‌فرض مرورگر برای select */
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    border-color: var(--accent);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* آیکون داخل اینپوت */
+.input-wrapper i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+/* آیکون فلش برای سلکت */
+.input-wrapper .select-arrow {
+    right: auto;
+    left: 15px;
+    font-size: 0.8rem;
+}
+
+/* حالت غیر فعال */
+.form-group.disabled { opacity: 0.7; }
+.form-group.disabled input { background: #e2e8f0; cursor: not-allowed; }
+.hint { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+
+/* دکمه ذخیره */
+.form-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.save-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.save-btn:hover {
+    background: #4f46e5;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+}
+
+/* پیام‌های وضعیت */
+.alert {
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+.alert.success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+.alert.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+@media (max-width: 768px) {
+    .info-summary { flex-direction: column; text-align: center; }
+    .form-grid { grid-template-columns: 1fr; }
+    .save-btn { width: 100%; justify-content: center; }
+}

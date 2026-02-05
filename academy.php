@@ -7,14 +7,15 @@ include_once __DIR__ . '/include/auth.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>درآمد یار - آکادمی</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" /> -->
-
+    
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/Vazirmatn-font-face.css">
    <link rel="stylesheet" href="style/academy.css?v=<?php echo filemtime(__DIR__ . '/style/academy.css'); ?>">
 </head>
 <body>
+
+    <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    <div class="overlay" id="mobileOverlay" onclick="closeMenu()"></div>
 
     <?php include __DIR__ . '/include/sidebar.php'; ?>
 
@@ -68,7 +69,6 @@ include_once __DIR__ . '/include/auth.php';
         </div>
 
         <div class="product-grid">
-
             <div class="product-card">
                 <div class="product-thumb-area">
                     <img src="https://ui-avatars.com/api/?name=Ali+B&background=e2e8f0&color=64748b&size=400" class="product-thumb">
@@ -91,75 +91,7 @@ include_once __DIR__ . '/include/auth.php';
                     </div>
                 </div>
             </div>
-
-            <div class="product-card">
-                <div class="product-thumb-area">
-                    <img src="https://ui-avatars.com/api/?name=S+M&background=e2e8f0&color=64748b&size=400" class="product-thumb">
-                    <div class="bookmark-btn saved"><i class="fa-solid fa-bookmark"></i></div>
-                </div>
-                <div class="product-info">
-                    <h4 class="product-title">دستورالعمل ترخیص بر بالین و مدیریت تخت</h4>
-                    <div class="guest-info">
-                        <div class="guest-icon"><i class="fa-solid fa-user-tie"></i></div>
-                        <div class="guest-details">
-                            <span class="guest-name">سارا مهرآرا</span>
-                            <span class="guest-role">مدیر مالی بیمارستان</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <div class="rating-box"><i class="fa-solid fa-star star"></i> 4.5</div>
-                        <div class="price-purchased"><i class="fa-solid fa-check-circle"></i> خریداری شده</div>
-                    </div>
-                </div>
             </div>
-
-            <div class="product-card">
-                <div class="product-thumb-area">
-                    <img src="https://ui-avatars.com/api/?name=Group&background=e2e8f0&color=64748b&size=400" class="product-thumb">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
-                    <div class="bookmark-btn"><i class="fa-regular fa-bookmark"></i></div>
-                </div>
-                <div class="product-info">
-                    <h4 class="product-title">شیوه‌نامه تخفیفات بیماران صعب‌العلاج</h4>
-                    <div class="guest-info">
-                        <div class="guest-icon"><i class="fa-solid fa-users"></i></div>
-                        <div class="guest-details">
-                            <span class="guest-name">تیم کارشناسان درآمد</span>
-                            <span class="guest-role">پنل تخصصی</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <div class="rating-box"><i class="fa-solid fa-star star"></i> 4.8</div>
-                        <div class="product-price" style="color:var(--success)">رایگان</div>
-                        <button class="action-btn"><i class="fa-solid fa-download"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-thumb-area">
-                    <img src="https://ui-avatars.com/api/?name=Reza+K&background=e2e8f0&color=64748b&size=400" class="product-thumb">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
-                    <div class="bookmark-btn"><i class="fa-regular fa-bookmark"></i></div>
-                </div>
-                <div class="product-info">
-                    <h4 class="product-title">مدیریت کسورات بیمه سلامت (نسخه جدید)</h4>
-                    <div class="guest-info">
-                        <div class="guest-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                        <div class="guest-details">
-                            <span class="guest-name">رضا کاظمی</span>
-                            <span class="guest-role">کارشناس ارشد بیمه</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <div class="rating-box"><i class="fa-solid fa-star star"></i> 5.0</div>
-                        <div class="product-price">180,000</div>
-                        <button class="action-btn"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
 
     </main>
 
@@ -193,6 +125,14 @@ include_once __DIR__ . '/include/auth.php';
     </div>
 
     <script>
+        // اسکریپت‌های منوی موبایل (اضافه شد)
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        
+        function toggleMenu() { sidebar.classList.toggle('active'); mobileOverlay.classList.toggle('active'); }
+        function closeMenu() { sidebar.classList.remove('active'); mobileOverlay.classList.remove('active'); }
+
+        // اسکریپت مودال فیلتر
         function toggleModal() {
             document.getElementById('filterModal').classList.toggle('open');
             document.getElementById('modalOverlay').classList.toggle('open');

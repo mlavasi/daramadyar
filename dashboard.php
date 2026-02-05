@@ -43,19 +43,7 @@ elseif ($is_premium && $daysLeft == 0) {
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/dashboard.css?v=<?php echo filemtime(__DIR__.'/style/dashboard.css'); ?>">
 
-    <style>
-        /* استایل اختصاصی برای مودال‌ها در همین صفحه */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
-        .modal-overlay.open { display: flex; opacity: 1; }
-        .info-modal { background: white; width: 90%; max-width: 500px; padding: 30px; border-radius: 20px; text-align: center; position: relative; transform: scale(0.9); transition: transform 0.3s; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-        .modal-overlay.open .info-modal { transform: scale(1); }
-        .modal-icon { font-size: 50px; margin-bottom: 20px; color: var(--accent-teal); }
-        .modal-title { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 15px; }
-        .modal-desc { color: var(--text-light); line-height: 1.8; margin-bottom: 25px; font-size: 14px; text-align: justify; }
-        .modal-btn { display: inline-block; padding: 12px 30px; background: var(--accent-teal); color: white; border-radius: 12px; font-weight: 700; transition: 0.3s; width: 100%; }
-        .modal-btn:hover { background: #0284c7; box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4); }
-        .close-modal-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; color: #94a3b8; cursor: pointer; }
-    </style>
+  
 </head>
 <body>
 
@@ -96,10 +84,12 @@ elseif ($is_premium && $daysLeft == 0) {
         <div>
             <div class="section-header">ابزارهای من</div>
             <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-icon-circle bg-blue-soft"><i class="fa-solid fa-user-gear"></i></div>
-                    <div class="tool-name">پروفایل کاربری</div>
-                </div>
+                <a href="profile" class="tool-card-link">
+                    <div class="tool-card">
+                        <div class="tool-icon-circle bg-blue-soft"><i class="fa-solid fa-user-gear"></i></div>
+                        <div class="tool-name">پروفایل کاربری</div>
+                    </div>
+                </a>
 
                 <a href="subscription" class="tool-card-link">
                     <div class="tool-card">

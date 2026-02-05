@@ -1,193 +1,123 @@
- 
-        :root {
-            --primary-bg: #f3f4f6;
-            --sidebar-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-light: #64748b;
-            --accent-teal: #0ea5e9;
-            --accent-purple: #6366f1; /* رنگ اصلی این صفحه */
-            --gradient-start: #3b82f6;
-            --gradient-end: #8b5cf6;
-            --border-color: #e2e8f0;
-        }
+:root {
+    --primary-bg: #f3f4f6;
+    --sidebar-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-light: #64748b;
+    --accent-teal: #0ea5e9;
+    --accent-purple: #6366f1;
+    --gradient-start: #3b82f6;
+    --gradient-end: #8b5cf6;
+    --border-color: #e2e8f0;
+}
 
-        .tool-card-link{
-            text-decoration:none;
-            color:inherit;
-            display:block;
-        }
+.tool-card-link { text-decoration: none; color: inherit; display: block; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; text-decoration: none; outline: none; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; text-decoration: none; outline: none; }
 
-        body { background-color: var(--primary-bg); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
+body { background-color: var(--primary-bg); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
 
-        /* --- سایدبار ثابت --- */
-        .sidebar { width: 260px; background-color: var(--sidebar-bg); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 20px; z-index: 100; }
-        .brand-logo { font-size: 22px; font-weight: 800; color: var(--accent-teal); display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9; }
-        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex: 1; }
-        .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: var(--text-light); font-weight: 500; font-size: 14px; transition: 0.2s; }
-        .nav-item:hover { background-color: #f1f5f9; color: var(--accent-teal); transform: translateX(-5px); }
-        .nav-item.active { background-color: #e0f2fe; color: #0284c7; font-weight: 700; } /* فعال بودن داشبورد */
-        .nav-item i { width: 20px; text-align: center; font-size: 18px; }
-        .sidebar-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 20px; display: flex; align-items: center; gap: 10px; }
-        .user-avatar { width: 40px; height: 40px; background: #e0f2fe; color: #0284c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+/* --- Mobile Menu Button (اضافه شد) --- */
+.mobile-menu-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1001; background: white; border: none; width: 45px; height: 45px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--accent-teal); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
+.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px); z-index: 1002; }
+.overlay.active { display: block; }
 
-        /* --- محتوای اصلی --- */
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 30px; }
+/* --- Sidebar --- */
+.sidebar { 
+    width: 260px; 
+    background-color: var(--sidebar-bg); 
+    border-left: 1px solid var(--border-color); 
+    display: flex; 
+    flex-direction: column; 
+    padding: 20px; 
+    z-index: 1003; /* اصلاح شد */
+    flex-shrink: 0;
+    height: 100vh;
+    transition: transform 0.3s;
+}
+.sidebar.active {
+    transform: translateX(0) !important;
+}
+.brand-logo { font-size: 22px; font-weight: 800; color: var(--accent-teal); display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9; }
+.nav-menu { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: var(--text-light); font-weight: 500; font-size: 14px; transition: 0.2s; }
+.nav-item:hover { background-color: #f1f5f9; color: var(--accent-teal); transform: translateX(-5px); }
+.nav-item.active { background-color: #e0f2fe; color: #0284c7; font-weight: 700; }
+.nav-item i { width: 20px; text-align: center; font-size: 18px; }
+.sidebar-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 20px; display: flex; align-items: center; gap: 10px; }
+.user-avatar { width: 40px; height: 40px; background: #e0f2fe; color: #0284c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        /* --- هدر پروفایل (گرادینت) --- */
-        .profile-header {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            border-radius: 24px;
-            padding: 40px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
+/* --- Main Content --- */
+.main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 30px; }
 
-        /* دایره‌های تزیینی پس‌زمینه */
-        .profile-header::before {
-            content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%;
-        }
-        .profile-header::after {
-            content: ''; position: absolute; bottom: -30px; left: 50px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%;
-        }
+/* Profile Header */
+.profile-header { background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); border-radius: 24px; padding: 40px; color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4); position: relative; overflow: hidden; }
+.profile-header::before { content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+.profile-header::after { content: ''; position: absolute; bottom: -30px; left: 50px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; }
 
-        .user-info { display: flex; align-items: center; gap: 20px; z-index: 1; }
-        
-        .large-avatar {
-            width: 80px; height: 80px;
-            background: white;
-            color: var(--accent-purple);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 35px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+.user-info { display: flex; align-items: center; gap: 20px; z-index: 1; }
+.large-avatar { width: 80px; height: 80px; background: white; color: var(--accent-purple); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.user-text h2 { margin-bottom: 5px; font-size: 24px; }
+.user-status { background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; }
 
-        .user-text h2 { margin-bottom: 5px; font-size: 24px; }
-        .user-status { background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; }
+.subscription-info { text-align: left; z-index: 1; background: rgba(255,255,255,0.15); padding: 15px 25px; border-radius: 16px; backdrop-filter: blur(5px); }
+.days-left { font-size: 28px; font-weight: 800; font-family: 'Segoe UI', sans-serif; }
+.days-label { font-size: 13px; opacity: 0.9; }
 
-        .subscription-info {
-            text-align: left;
-            z-index: 1;
-            background: rgba(255,255,255,0.15);
-            padding: 15px 25px;
-            border-radius: 16px;
-            backdrop-filter: blur(5px);
-        }
-        .days-left { font-size: 28px; font-weight: 800; font-family: 'Segoe UI', sans-serif; }
-        .days-label { font-size: 13px; opacity: 0.9; }
+.renew-banner { background: white; border-radius: 16px; padding: 20px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+.renew-content { display: flex; align-items: center; gap: 15px; }
+.renew-icon { font-size: 24px; color: #f59e0b; }
+.renew-title { font-weight: 700; font-size: 16px; color: var(--text-main); }
+.renew-subtitle { font-size: 13px; color: var(--text-light); }
+.renew-btn { background-color: var(--accent-purple); color: white; border: none; padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+.renew-btn:hover { background-color: #4f46e5; }
 
-        /* --- بنفش تمدید اشتراک --- */
-        .renew-banner {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
+/* Tools & Support */
+.section-header { font-size: 18px; font-weight: 800; margin-bottom: 15px; color: var(--text-main); }
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 
-        .renew-content { display: flex; align-items: center; gap: 15px; }
-        .renew-icon { font-size: 24px; color: #f59e0b; }
-        .renew-title { font-weight: 700; font-size: 16px; color: var(--text-main); }
-        .renew-subtitle { font-size: 13px; color: var(--text-light); }
+.tool-card { background: white; padding: 25px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; transition: 0.3s; border: 1px solid transparent; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: #c7d2fe; }
 
-        .renew-btn {
-            background-color: var(--accent-purple);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .renew-btn:hover { background-color: #4f46e5; }
+.tool-icon-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+.bg-blue-soft { background: #dbeafe; color: #2563eb; }
+.bg-orange-soft { background: #ffedd5; color: #ea580c; }
+.bg-purple-soft { background: #f3e8ff; color: #9333ea; }
+.tool-name { font-weight: 700; color: var(--text-main); }
 
-        /* --- بخش ابزارها --- */
-        .section-header { font-size: 18px; font-weight: 800; margin-bottom: 15px; color: var(--text-main); }
+.support-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+.support-item { background: white; padding: 15px 20px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #f1f5f9; transition: 0.2s; cursor: pointer; }
+.support-item:hover { border-color: var(--accent-teal); background-color: #f0f9ff; }
+.support-icon { font-size: 22px; width: 30px; text-align: center; }
+.text-telegram { color: #229ED9; }
+.text-webinar { color: #be185d; }
+.text-share { color: #0ea5e9; }
+.text-star { color: #f59e0b; }
+.text-whatsapp { color: #25D366; }
+.support-text { font-weight: 500; font-size: 15px; }
+.arrow-icon { margin-right: auto; color: #cbd5e1; font-size: 14px; }
 
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+/* استایل‌های مربوط به مودال که از فایل PHP به اینجا منتقل شد */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+.modal-overlay.open { display: flex; opacity: 1; }
+.info-modal { background: white; width: 90%; max-width: 500px; padding: 30px; border-radius: 20px; text-align: center; position: relative; transform: scale(0.9); transition: transform 0.3s; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+.modal-overlay.open .info-modal { transform: scale(1); }
+.modal-icon { font-size: 50px; margin-bottom: 20px; color: var(--accent-teal); }
+.modal-title { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 15px; }
+.modal-desc { color: var(--text-light); line-height: 1.8; margin-bottom: 25px; font-size: 14px; text-align: justify; }
+.modal-btn { display: inline-block; padding: 12px 30px; background: var(--accent-teal); color: white; border-radius: 12px; font-weight: 700; transition: 0.3s; width: 100%; }
+.modal-btn:hover { background: #0284c7; box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4); }
+.close-modal-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; color: #94a3b8; cursor: pointer; }
 
-        .tool-card {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid transparent;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            border-color: #c7d2fe;
-        }
-
-        .tool-icon-circle {
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px;
-        }
-
-        /* رنگ‌های آیکون‌ها */
-        .bg-blue-soft { background: #dbeafe; color: #2563eb; }
-        .bg-orange-soft { background: #ffedd5; color: #ea580c; }
-        .bg-purple-soft { background: #f3e8ff; color: #9333ea; }
-
-        .tool-name { font-weight: 700; color: var(--text-main); }
-
-        /* --- بخش پشتیبانی (لیست شبکه‌ای) --- */
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-        }
-
-        .support-item {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid #f1f5f9;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .support-item:hover {
-            border-color: var(--accent-teal);
-            background-color: #f0f9ff;
-        }
-
-        .support-icon { font-size: 22px; width: 30px; text-align: center; }
-        
-        .text-telegram { color: #229ED9; }
-        .text-webinar { color: #be185d; }
-        .text-share { color: #0ea5e9; }
-        .text-star { color: #f59e0b; }
-        .text-whatsapp { color: #25D366; }
-
-        .support-text { font-weight: 500; font-size: 15px; }
-        .arrow-icon { margin-right: auto; color: #cbd5e1; font-size: 14px; }
-
-   
+/* --- Responsive (اضافه شد) --- */
+@media (max-width: 768px) {
+    body { display: block; overflow: auto; }
+    .mobile-menu-btn { display: flex; }
+    .sidebar { position: fixed; top: 0; right: 0; height: 100vh; width: 280px; transform: translateX(100%); box-shadow: -5px 0 20px rgba(0,0,0,0.1); z-index: 1003 !important; }
+    .main-content { padding: 80px 20px 20px 20px; height: auto; overflow: visible; }
+    .profile-header { flex-direction: column; text-align: center; padding: 30px; gap: 20px; }
+    .user-info { flex-direction: column; }
+    .subscription-info { width: 100%; text-align: center; }
+    .renew-banner { flex-direction: column; text-align: center; gap: 15px; }
+    .renew-content { flex-direction: column; }
+    .renew-btn { width: 100%; }
+}
