@@ -103,6 +103,9 @@ include_once __DIR__ . '/include/auth.php';
 </head>
 <body>
 
+    <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    <div class="overlay" id="mobileOverlay" onclick="closeMenu()"></div>
+
     <?php include __DIR__ . '/include/sidebar.php'; ?>
 
     <main class="main-content">
@@ -619,6 +622,10 @@ include_once __DIR__ . '/include/auth.php';
     </main>
 
 <script>
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        function toggleMenu() { sidebar.classList.toggle('active'); mobileOverlay.classList.toggle('active'); }
+        function closeMenu() { sidebar.classList.remove('active'); mobileOverlay.classList.remove('active'); }
     function filterTable() {
         var input = document.getElementById("searchInput");
         var filter = input.value.trim().toLowerCase();

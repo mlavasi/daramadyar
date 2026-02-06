@@ -12,7 +12,7 @@ include_once __DIR__ . '/include/auth.php';
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/index.css?v=<?php echo filemtime(__DIR__ . '/style/index.css'); ?>">
 
-   
+    <?php include '/include/analytics.php'; ?>
 </head>
 <body>
 

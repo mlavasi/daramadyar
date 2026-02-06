@@ -42,8 +42,6 @@ elseif ($is_premium && $daysLeft == 0) {
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/dashboard.css?v=<?php echo filemtime(__DIR__.'/style/dashboard.css'); ?>">
-
-  
 </head>
 <body>
 

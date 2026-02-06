@@ -24,6 +24,7 @@ $items = $db->query($query);
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/Vazirmatn-font-face.css">
     <link rel="stylesheet" href="style/adjustment.css?v=<?php echo filemtime(__DIR__ . '/style/adjustment.css'); ?>">
+    <?php include '/include/analytics.php'; ?>
 </head>
 <body>
 

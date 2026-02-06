@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . '/include/config.php';
 include_once __DIR__ . '/include/auth.php';
-// نیازی به کوئری دیتابیس در اینجا نیست چون با AJAX لود میشود
+
 ?>
 
 <!DOCTYPE html>
