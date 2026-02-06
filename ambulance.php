@@ -15,6 +15,7 @@ $jsonData = '[{"id":1,"code":"988845","amb_type":"b","city":"tehran","dolati":10
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/ambulance.css?v=<?php echo filemtime(__DIR__ . '/style/ambulance.css'); ?>">
+    <?php include 'include/analytics.php'; ?>
     <style>
         /* استایل‌های اضافه شده برای اینپوت‌های جدید */
         .input-row {

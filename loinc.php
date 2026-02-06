@@ -18,6 +18,7 @@ $items = $db->query($query);
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/loinc.css?v=<?php echo filemtime(__DIR__ . '/style/loinc.css'); ?>">
+    <?php include 'include/analytics.php'; ?>
 </head>
 <body>
 

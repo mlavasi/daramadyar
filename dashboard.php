@@ -31,6 +31,15 @@ elseif ($is_premium && $daysLeft == 0) {
         $statusColor = "#f59e0b"; // نارنجی
     }
 }
+
+$displayName = 'کاربر مهمان';
+
+if (!empty($user['full_name'])) {
+    $displayName = $user['full_name'];
+} elseif (!empty($user['mobile'])) {
+    $displayName = $user['mobile'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -42,6 +51,7 @@ elseif ($is_premium && $daysLeft == 0) {
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/dashboard.css?v=<?php echo filemtime(__DIR__.'/style/dashboard.css'); ?>">
+    <?php include 'include/analytics.php'; ?>
 </head>
 <body>
 
@@ -56,7 +66,7 @@ elseif ($is_premium && $daysLeft == 0) {
             <div class="user-info">
                 <div class="large-avatar"><i class="fa-regular fa-user"></i></div>
                 <div class="user-text">
-                    <h2><?= htmlspecialchars($user['mobile'] ?? 'کاربر مهمان') ?> <i class="fa-solid fa-crown" style="color: #facc15; font-size: 20px;"></i></h2>
+                    <h2><?= htmlspecialchars($user['full_name'] ?? $user['mobile'] ?? 'کاربر مهمان') ?> <i class="fa-solid fa-crown" style="color: #facc15; font-size: 20px;"></i></h2>
                     <div class="user-status">وضعیت: <span style="color: <?= $statusColor ?>; font-weight:bold"><?= $statusText ?></span></div>
                 </div>
             </div>

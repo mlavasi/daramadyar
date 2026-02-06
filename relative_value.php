@@ -14,7 +14,7 @@ include_once __DIR__ . '/include/auth.php';
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/relative_value.css?v=<?php echo filemtime(__DIR__ . '/style/relative_value.css'); ?>">
-
+<?php include 'include/analytics.php'; ?>
     <style>
     /* کلاس برای غیرفعال کردن تب‌ها */
     .disabled-area {

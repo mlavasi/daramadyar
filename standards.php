@@ -12,8 +12,8 @@ include_once __DIR__ . '/include/auth.php';
 
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/Vazirmatn-font-face.css">
-
     <link rel="stylesheet" href="style/standards.css">
+    <?php include 'include/analytics.php'; ?>
 </head>
 <body>
 

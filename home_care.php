@@ -19,6 +19,7 @@ $items = $db->query($query);
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
    <link rel="stylesheet" href="style/home_care.css?v=<?php echo filemtime(__DIR__ . '/style/home_care.css'); ?>">
+   <?php include 'include/analytics.php'; ?>
 </head>
 <body>
 

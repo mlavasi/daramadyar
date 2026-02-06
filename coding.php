@@ -27,7 +27,7 @@ $items = $db->query($query);
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/coding.css?v=<?php echo filemtime(__DIR__ . '/style/coding.css'); ?>">
-
+<?php include 'include/analytics.php'; ?>
     <style>
         :root {
             --primary-bg: #f3f4f6;

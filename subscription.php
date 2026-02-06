@@ -27,7 +27,9 @@ if ($result) {
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     
     <link rel="stylesheet" href="style/dashboard.css"> 
-    <link rel="stylesheet" href="style/shop.css"> </head>
+    <link rel="stylesheet" href="style/shop.css">
+    <?php include 'include/analytics.php'; ?>
+ </head>
 <body>
 
     <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>

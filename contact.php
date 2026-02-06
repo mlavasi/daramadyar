@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/dashboard.css?v=<?= filemtime(__DIR__.'/style/dashboard.css') ?>">
-    
+    <?php include 'include/analytics.php'; ?>
     <style>
         .contact-card {
             background: white;

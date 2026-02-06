@@ -63,7 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
-    <link rel="stylesheet" href="style/dashboard.css"> <link rel="stylesheet" href="style/profile.css?v=<?php echo filemtime(__DIR__.'/style/profile.css'); ?>">
+    <link rel="stylesheet" href="style/dashboard.css"> 
+    <link rel="stylesheet" href="style/profile.css?v=<?php echo filemtime(__DIR__.'/style/profile.css'); ?>">
+    <?php include 'include/analytics.php'; ?>
 </head>
 <body>
 

@@ -13,6 +13,7 @@ include_once __DIR__ . '/include/auth.php';
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/professional_technical.css?v=<?php echo filemtime(__DIR__ . '/style/professional_technical.css'); ?>">
+    <?php include 'include/analytics.php'; ?>
 </head>
 <body>
 

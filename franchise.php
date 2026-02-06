@@ -11,7 +11,7 @@ include_once __DIR__ . '/include/auth.php';
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="fonts/vazirmatn.css">
     <link rel="stylesheet" href="style/franchise.css?v=<?php echo filemtime(__DIR__ . '/style/franchise.css'); ?>">
-
+<?php include 'include/analytics.php'; ?>
     <style>
         /* --- تنظیمات حیاتی برای اسکرول صحیح --- */
         
